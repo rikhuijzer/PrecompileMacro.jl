@@ -29,7 +29,7 @@ function run_application(path::String, id::Int)
 end
 ```
 
-This package defines a `@precompile` macro which can be used as follows:
+This package defines a `@precompile` macro (function decorator) which can be used as follows:
 
 ```julia
 @precompile function run_application(path::String, id::Int)
