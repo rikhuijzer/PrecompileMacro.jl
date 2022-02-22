@@ -1,8 +1,8 @@
 using MethodAnalysis: methodinstances
-using Precompile
+using PrecompileMacro
 using Test
 
-@testset "Precompile" begin
+@testset "PrecompileMacro" begin
     @precompile g(path::String, id::Int) = string(path, id)
 
     # Verify that one methodinstance is ready even though we didn't call the function yet.

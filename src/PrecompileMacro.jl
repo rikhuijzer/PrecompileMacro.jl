@@ -1,4 +1,4 @@
-module Precompile
+module PrecompileMacro
 
 using MacroTools: combinedef, splitarg, splitdef
 

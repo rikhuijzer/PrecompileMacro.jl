@@ -1,11 +1,11 @@
-# Precompile.jl
+# PrecompileMacro.jl
 
 A `@precompile` decorator to trigger precompilation.
 
 ## Installation
 
 ```julia
-pkg> add https://github.com/rikhuijzer/Precompile.jl
+pkg> add https://github.com/rikhuijzer/PrecompileMacro.jl
 ```
 
 ## Usage
