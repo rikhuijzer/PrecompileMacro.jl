@@ -11,6 +11,10 @@ using Test
     # To be sure that the method works.
     @test g("lorem", 1) == "lorem1"
 
-    # No idea why this always fails. Maybe the function has to be inside the macro.
-    # @test_throws LoadError @precompile f(path::AbstractString) = 1
+    @test_throws LoadError eval(:(@precompile f(path::AbstractString) = 1))
+
+    "Some doc"
+    @precompile h() = 3
+    @test length(methodinstances(h)) == 1
+    @test contains(string(@doc h), "Some doc")
 end

@@ -41,7 +41,7 @@ macro precompile(func)
     # Note that `precompile` returns a boolean to indicate whether a statement is active.
     # Might be useful at some point.
     return esc(quote
-        $func
+        Base.@__doc__($func)
         $precompile_ex
     end)
 end
