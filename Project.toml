@@ -1,7 +1,7 @@
 name = "PrecompileMacro"
 uuid = "7044eba9-3226-4c27-acf2-f557c1cd82a0"
 authors = ["Rik Huijzer <rikhuijzer@pm.me>"]
-version = "1.0.0"
+version = "1.0.1"
 
 [deps]
 MacroTools = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
