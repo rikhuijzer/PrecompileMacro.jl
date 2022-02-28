@@ -3,18 +3,19 @@ module PrecompileMacro
 export @precompile
 
 function _precompile(func::Expr)
-    func.args[1].head == :where && error("@precompile is not implemented for methods with type parameters")
+    func_signature = func.args[1]::Expr
+    func_signature.head == :where && error("PrecompileMacro.@precompile is not implemented for methods with type parameters")
 
-    sig = func.args[1].args
-    func_name = sig[1]::Symbol
+    signature_args = func_signature.args::Vector{Any}
+    func_name = signature_args[1]::Symbol
+
     # Drop function name and kwargs.
-    args = filter(x -> x isa Expr && x.head != :parameters, sig)
-    types = Tuple(eval(last(arg.args)) for arg in args)
-    if !all(isconcretetype.(types))
-        nonconcrete = filter(!isconcretetype, types)
-        multiple = 1 < length(nonconcrete)
-        msg = "The type$(multiple ? 's' : "") $nonconcrete in the signature $(func_name)$(types) $(multiple ? "are" : "is") not concrete."
-        error(msg)
+    args = convert(Vector{Expr}, filter(x -> x isa Expr && x.head != :parameters, signature_args))
+    types = Tuple(eval(last(arg.args))::DataType for arg in args)
+    for type in types
+        if !isconcretetype(type)
+            error("The type $type in the signature $(func_name)$(types) is not concrete")
+        end
     end
 
     precompile_ex = :(precompile($func_name, $types))
