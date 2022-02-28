@@ -11,10 +11,13 @@ using Test
     # To be sure that the method works.
     @test g("lorem", 1) == "lorem1"
 
+    @precompile h(a::Int, b::Int; c=3) = string(a, b, c)
+    @test length(methodinstances(h)) == 1
+
     @test_throws LoadError eval(:(@precompile f(path::AbstractString) = 1))
 
     "Some doc"
-    @precompile h() = 3
-    @test length(methodinstances(h)) == 1
-    @test contains(string(@doc h), "Some doc")
+    @precompile k() = 3
+    @test length(methodinstances(k)) == 1
+    @test contains(string(@doc k), "Some doc")
 end
