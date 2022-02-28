@@ -5,7 +5,7 @@ A `@precompile` decorator to trigger precompilation.
 ## Installation
 
 ```julia
-pkg> add https://github.com/rikhuijzer/PrecompileMacro.jl
+pkg> add PrecompileMacro
 ```
 
 ## Usage
@@ -21,6 +21,8 @@ end
 This package defines a `@precompile` macro (function decorator) which can be used as follows:
 
 ```julia
+using PrecompileMacro: @precompile
+
 @precompile function run_application(path::String, id::Int)
     do_something(path, id)
 end
