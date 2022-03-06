@@ -2,6 +2,9 @@
 
 A `@precompile` decorator to trigger precompilation.
 
+Note that this only works outside packages.
+Inside packages, the compiler throws an error because things change during compilation.
+
 ## Installation
 
 ```julia
